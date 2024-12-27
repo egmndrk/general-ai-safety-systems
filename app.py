@@ -36,11 +36,11 @@ def create_app():
             'description': 'Conclusions and future work'
         }'''
 
-    @app.route('/')
+    @app.route('/', methods=["GET", "POST"])
     def index():
         return render_template('index.html', pdfs=pdf_files, project_name="General AI Safety Systems")
 
-    @app.route('/pdf/<filename>')
+    @app.route('/pdf/<filename>', methods=["GET", "POST"])
     def serve_pdf(filename):
         return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
     return app
