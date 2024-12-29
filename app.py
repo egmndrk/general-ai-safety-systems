@@ -14,17 +14,17 @@ def create_app():
     # Sample PDF information - replace with your actual PDF files
     pdf_files = [
         {
-            "title": "Report 1 - Project Idea",
+            "title": "Report 1 - Project Idea Report",
             "filename": "FKR-ProjectIdea.pdf",
             "description": "Introduction and project overview"
         },
         {
-            "title": "Report 2 - Project Specification",
+            "title": "Report 2 - Project Specification Report",
             "filename": "ProjectSpecificationsReport.pdf",
             "description": "Architectural Design and Workflow"
         },
         {
-            "title": "Report 3 - Analysis",
+            "title": "Report 3 - Analysis Report",
             "filename": "Analysis_Report_for_General_AI_Safety_Systems.pdf",
             "description": "Comprehensive examination of current and proposed safety systems for school transportation, addressing limitations and introducing AI-driven solutions"
         },
