@@ -13,7 +13,7 @@ def create_app():
 
     # Sample PDF information - replace with your actual PDF files
     pdf_files = [
-        {
+        {  
             "title": "Report 1 - Project Idea Report",
             "filename": "FKR-ProjectIdea.pdf",
             "description": "Introduction and project overview"
@@ -32,6 +32,21 @@ def create_app():
             "title": "Report 4 - High-Level Design Report",
             "filename": "High-LevelDesignReport.pdf",
             "description": "Detailed architectural breakdown and system-level design for AI safety systems in school transportation"
+        },
+        {
+            "title": "Report 5 - Low-Level Design Report",
+            "filename": "Low-LevelDesignReport.pdf",
+            "description": "In-depth component-level design including data structures, algorithms, and communication flows"
+        },
+        {
+            "title": "Report 6 - Test Plan Report",
+            "filename": "TestPlanReport.pdf",
+            "description": "Testing strategy, test cases, and validation methods for system components and overall functionality"
+        },
+        {
+            "title": "Report 7 - Multidisciplinary Delivery Assessment",
+            "filename": "MultidisciplinaryDeliveryAssessment.pdf",
+            "description": "Evaluation of interdisciplinary collaboration and integration across engineering, design, and ethical domains"
         }
     ]
 
