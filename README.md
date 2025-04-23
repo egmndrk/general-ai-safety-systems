@@ -10,6 +10,9 @@ A clean and simple documentation website that hosts all reports and documents re
 2. Project Specification Report
 3. Analysis Report
 4. High-Level Design Report
+5. Low-Level Design Report
+6. Test Plan Report
+7. Multidisciplinary Delivery Assessment
 
 ## Author
 
