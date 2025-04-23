@@ -16,7 +16,7 @@ A clean and simple documentation website that hosts all reports and documents re
 
 ## Author
 
-Egemen Doruk Serdar
-Mustafa Boğaç Morkoyun
-Ege İzmir
-Mustafa Pınarcı
+- Egemen Doruk Serdar
+- Mustafa Boğaç Morkoyun
+- Ege İzmir
+- Mustafa Pınarcı
