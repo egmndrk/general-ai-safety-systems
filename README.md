@@ -10,27 +10,6 @@ A comprehensive AI-driven safety system for modern transportation, featuring a b
 - **Animated Elements**: Smooth transitions and loading animations
 - **Mobile Responsive**: Looks great on all devices
 
-## Running the Application
-
-1. **Setup a virtual environment**:
-   ```
-   python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
-   ```
-
-2. **Install dependencies**:
-   ```
-   pip install -r requirements.txt
-   ```
-
-3. **Run the application**:
-   ```
-   python app.py
-   ```
-
-4. **Access the application**:
-   Open your browser and navigate to `http://127.0.0.1:5000`
-
 ## Project Structure
 
 - `app.py` - Flask application entry point
@@ -40,12 +19,6 @@ A comprehensive AI-driven safety system for modern transportation, featuring a b
   - `script.js` - Interactive features
   - `logo.svg` - Project logo
   - `pdfs/` - PDF document storage
-
-## Adding Documents
-
-To add new PDF documents:
-1. Place your PDF files in the `static/pdfs/` directory
-2. Update the `pdf_files` list in `app.py` with your new document information
 
 ## Customization
 
