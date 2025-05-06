@@ -1,8 +1,64 @@
-# General AI Safety Systems - Project Documentation Site
+# General AI Safety Systems
 
-A clean and simple documentation website that hosts all reports and documents related to the General AI Safety Systems senior project. The website provides easy access to project documentation including project idea, specifications, analysis, and design reports.
+A comprehensive AI-driven safety system for modern transportation, featuring a beautifully designed web interface to access project documentation.
 
-🔗 **Live Website**: [general-ai-safety-systems.onrender.com](https://general-ai-safety-systems.onrender.com/)
+## Features
+
+- **Modern User Interface**: Clean, responsive design with Tailwind CSS
+- **Dark Mode**: Toggle between light and dark themes
+- **Search Functionality**: Easily find specific documents
+- **Animated Elements**: Smooth transitions and loading animations
+- **Mobile Responsive**: Looks great on all devices
+
+## Running the Application
+
+1. **Setup a virtual environment**:
+   ```
+   python -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   ```
+
+2. **Install dependencies**:
+   ```
+   pip install -r requirements.txt
+   ```
+
+3. **Run the application**:
+   ```
+   python app.py
+   ```
+
+4. **Access the application**:
+   Open your browser and navigate to `http://127.0.0.1:5000`
+
+## Project Structure
+
+- `app.py` - Flask application entry point
+- `templates/` - HTML templates
+- `static/` - CSS, JavaScript, and other static assets
+  - `styles.css` - Custom styles
+  - `script.js` - Interactive features
+  - `logo.svg` - Project logo
+  - `pdfs/` - PDF document storage
+
+## Adding Documents
+
+To add new PDF documents:
+1. Place your PDF files in the `static/pdfs/` directory
+2. Update the `pdf_files` list in `app.py` with your new document information
+
+## Customization
+
+- **Colors**: Edit the CSS variables in `static/styles.css`
+- **Logo**: Replace `static/logo.svg` with your own logo
+- **Content**: Modify the hero section text in `templates/index.html`
+
+## Technologies Used
+
+- Flask (Python web framework)
+- Tailwind CSS
+- JavaScript (ES6+)
+- Font Awesome icons
 
 ## Available Documents
 

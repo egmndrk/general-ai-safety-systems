@@ -1,5 +1,5 @@
 # app.py
-from flask import Flask, render_template, send_from_directory
+from flask import Flask, render_template, send_from_directory, abort, redirect
 import os
 
 def create_app():
@@ -57,6 +57,49 @@ def create_app():
 
     @app.route('/pdf/<filename>', methods=["GET", "POST"])
     def serve_pdf(filename):
-        return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
+        try:
+            # Security check to prevent directory traversal
+            if '..' in filename or filename.startswith('/'):
+                abort(404)
+                
+            pdf_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            if not os.path.isfile(pdf_path):
+                # Return a "PDF not found" page or redirect
+                return render_template('index.html', pdfs=pdf_files, 
+                                     project_name="General AI Safety Systems", 
+                                     error=f"PDF file '{filename}' not found")
+                                     
+            return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
+        except Exception as e:
+            app.logger.error(f"Error serving PDF {filename}: {str(e)}")
+            abort(500)
+    
+    @app.route('/github')
+    def github():
+        # Redirect to GitHub repository
+        return redirect('https://github.com/egmndrk/general-ai-safety-systems')
+    
+    @app.route('/twitter')
+    def twitter():
+        # Show coming soon page
+        return render_template('coming_soon.html', project_name="General AI Safety Systems")
+    
+    @app.route('/linkedin')
+    def linkedin():
+        # Show coming soon page
+        return render_template('coming_soon.html', project_name="General AI Safety Systems")
+    
+    @app.errorhandler(404)
+    def page_not_found(e):
+        return render_template('index.html', pdfs=pdf_files, 
+                             project_name="General AI Safety Systems", 
+                             error="Page not found"), 404
+                             
+    @app.errorhandler(500)
+    def server_error(e):
+        return render_template('index.html', pdfs=pdf_files, 
+                             project_name="General AI Safety Systems", 
+                             error="Server error occurred"), 500
+                             
     return app
 

@@ -1,0 +1,74 @@
+<!-- templates/coming_soon.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coming Soon - {{ project_name }}</title>
+    <!-- Updated to latest Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='favicon.svg') }}">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <!-- Navigation Bar -->
+    <nav class="navbar sticky top-0 z-50 py-4 px-6">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center">
+                <a href="{{ url_for('index') }}" class="flex items-center">
+                    <img src="{{ url_for('static', filename='logo.svg') }}" alt="Logo" class="w-10 h-10 mr-3">
+                    <span class="text-xl font-bold text-gray-800">{{ project_name }}</span>
+                </a>
+            </div>
+            
+            <!-- Dark Mode Toggle -->
+            <div class="flex items-center">
+                <span class="mr-2 text-sm text-gray-600">
+                    <i class="fas fa-sun"></i>
+                </span>
+                <label class="relative inline-block w-12 h-6">
+                    <input type="checkbox" id="darkModeToggle" class="opacity-0 w-0 h-0">
+                    <span class="absolute cursor-pointer top-0 left-0 right-0 bottom-0 bg-gray-300 rounded-full transition-all duration-300 before:absolute before:h-4 before:w-4 before:left-1 before:bottom-1 before:bg-white before:rounded-full before:transition-all before:duration-300 checked:before:translate-x-6 checked:bg-blue-600"></span>
+                </label>
+                <span class="ml-2 text-sm text-gray-600">
+                    <i class="fas fa-moon"></i>
+                </span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Coming Soon Section -->
+    <div class="flex items-center justify-center h-screen">
+        <div class="text-center px-6 md:px-0">
+            <div class="mb-8 animate-fadeIn">
+                <img src="{{ url_for('static', filename='logo.svg') }}" alt="Logo" class="w-24 h-24 mx-auto mb-6">
+                <h1 class="text-5xl font-bold text-gray-800 dark:text-white mb-4">Coming Soon</h1>
+                <p class="text-xl text-gray-600 dark:text-gray-300 max-w-lg mx-auto">
+                    We're working on something awesome. This page is under construction and will be available soon.
+                </p>
+            </div>
+            
+            <a href="{{ url_for('index') }}" class="pdf-button inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-300">
+                <i class="fas fa-arrow-left mr-2"></i>
+                Back to Home
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer py-8 px-6 fixed bottom-0 w-full">
+        <div class="container mx-auto">
+            <div class="border-t border-gray-700 pt-6 text-center text-gray-400">
+                <p>&copy; 2025 {{ project_name }}. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html> 
