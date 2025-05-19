@@ -5,30 +5,22 @@ document.addEventListener('DOMContentLoaded', function() {
     const darkModeToggle = document.getElementById('darkModeToggle');
     
     if (darkModeToggle) {
-        // Check for saved user preference or system preference
-        let darkMode = localStorage.getItem('darkMode');
+        // Check for saved user preference
+        const darkMode = localStorage.getItem('darkMode') === 'true';
         
-        // If no preference is set, check system preference
-        if (darkMode === null) {
-            darkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            localStorage.setItem('darkMode', darkMode);
-        } else {
-            darkMode = darkMode === 'true';
-        }
-        
-        // Apply dark mode if needed
+        // Apply dark mode if previously selected
         if (darkMode) {
-            document.documentElement.classList.add('dark');
+            document.body.classList.add('dark-mode');
             darkModeToggle.checked = true;
         }
         
         // Add event listener for toggle
         darkModeToggle.addEventListener('change', function() {
             if (this.checked) {
-                document.documentElement.classList.add('dark');
+                document.body.classList.add('dark-mode');
                 localStorage.setItem('darkMode', 'true');
             } else {
-                document.documentElement.classList.remove('dark');
+                document.body.classList.remove('dark-mode');
                 localStorage.setItem('darkMode', 'false');
             }
         });
@@ -57,32 +49,47 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Search functionality for PDFs
     const searchInput = document.getElementById('searchInput');
+    const noResultsElement = document.getElementById('noResults');
     
     if (searchInput) {
-        searchInput.addEventListener('input', function() {
-            const searchTerm = this.value.toLowerCase();
+        searchInput.addEventListener('input', debounce(function() {
+            const searchTerm = this.value.toLowerCase().trim();
             const pdfCards = document.querySelectorAll('.pdf-card');
+            let resultsFound = false;
             
             pdfCards.forEach(card => {
                 const title = card.querySelector('.card-title').textContent.toLowerCase();
                 const description = card.querySelector('.card-description').textContent.toLowerCase();
                 
-                if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                if (title.includes(searchTerm) || description.includes(searchTerm) || searchTerm === '') {
                     card.style.display = 'block';
-                    setTimeout(() => {
-                        card.style.opacity = '1';
-                        card.style.transform = 'translateY(0)';
-                    }, 50);
+                    resultsFound = true;
                 } else {
-                    card.style.opacity = '0';
-                    card.style.transform = 'translateY(20px)';
-                    setTimeout(() => {
-                        card.style.display = 'none';
-                    }, 300);
+                    card.style.display = 'none';
                 }
             });
-        });
+            
+            // Show/hide "no results" message
+            if (noResultsElement) {
+                if (!resultsFound && searchTerm !== '') {
+                    noResultsElement.classList.remove('hidden');
+                } else {
+                    noResultsElement.classList.add('hidden');
+                }
+            }
+        }, 300));
     }
+    
+    // Helper function to debounce search input
+    function debounce(func, wait) {
+        let timeout;
+        return function(...args) {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => func.apply(this, args), wait);
+        };
+    }
+
+    // Category filter buttons removed as requested
 
     // Animation on scroll
     const animateOnScroll = function() {
@@ -90,26 +97,48 @@ document.addEventListener('DOMContentLoaded', function() {
         
         elements.forEach(element => {
             const position = element.getBoundingClientRect();
-            const windowHeight = window.innerHeight;
             
-            // Check if element is in viewport (with offset for smoother appearance)
-            if (position.top < windowHeight - 100) {
-                element.classList.add('visible');
+            // Check if element is in viewport
+            if (position.top < window.innerHeight * 0.9 && position.bottom >= 0) {
+                element.classList.add('animate-fadeIn');
             }
         });
     };
     
-    // Run on scroll with throttling for better performance
-    let scrollTimeout;
-    window.addEventListener('scroll', function() {
-        if (!scrollTimeout) {
-            scrollTimeout = setTimeout(function() {
-                scrollTimeout = null;
-                animateOnScroll();
-            }, 100);
-        }
+    // Run on scroll
+    window.addEventListener('scroll', animateOnScroll);
+    
+    // Run once on page load
+    setTimeout(animateOnScroll, 100);
+    
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                window.scrollTo({
+                    top: target.offsetTop,
+                    behavior: 'smooth'
+                });
+            }
+        });
     });
     
-    // Run once on page load after a slight delay to allow page rendering
-    setTimeout(animateOnScroll, 100);
+    // Newsletter form event listeners removed as requested
+    
+    // Add hover effects to card items for better interactivity
+    const pdfCards = document.querySelectorAll('.pdf-card');
+    pdfCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-5px)';
+            this.style.boxShadow = 'var(--shadow-lg)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+            this.style.boxShadow = 'var(--shadow-sm)';
+        });
+    });
 }); 

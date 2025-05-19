@@ -16,42 +16,42 @@ def create_app():
         {
             "title": "Report 1 - Project Idea Report",
             "filename": "FKR-ProjectIdea.pdf",
-            "description": "Introduction and project overview"
+            "description": "Introduction and project overview."
         },
         {
             "title": "Report 2 - Project Specification Report",
             "filename": "ProjectSpecificationsReport.pdf",
-            "description": "Architectural Design and Workflow"
+            "description": "Architectural Design and Workflow."
         },
         {
             "title": "Report 3 - Analysis Report",
             "filename": "Analysis_Report_for_General_AI_Safety_Systems.pdf",
-            "description": "Comprehensive examination of current and proposed safety systems for school transportation, addressing limitations and introducing AI-driven solutions"
+            "description": "Comprehensive examination of current and proposed safety systems for school transportation, addressing limitations and introducing AI-driven solutions."
         },
         {
             "title": "Report 4 - High-Level Design Report",
             "filename": "High-LevelDesignReport.pdf",
-            "description": "Detailed architectural breakdown and system-level design for AI safety systems in school transportation"
+            "description": "Detailed architectural breakdown and system-level design for AI safety systems in school transportation."
         },
         {
             "title": "Report 5 - Low-Level Design Report",
             "filename": "Low-LevelDesignReport.pdf",
-            "description": "In-depth component-level design including data structures, algorithms, and communication flows"
+            "description": "In-depth component-level design including data structures, algorithms, and communication flows."
         },
         {
             "title": "Report 6 - Test Plan Report",
             "filename": "TestPlanReport.pdf",
-            "description": "Testing strategy, test cases, and validation methods for system components and overall functionality"
+            "description": "Testing strategy, test cases, and validation methods for system components and overall functionality."
         },
         {
             "title": "Report 7 - Multidisciplinary Delivery Assessment",
             "filename": "MultidisciplinaryDeliveryAssessment.pdf",
-            "description": "Evaluation of interdisciplinary collaboration and integration across engineering, design, and ethical domains"
+            "description": "Evaluation of interdisciplinary collaboration and integration across engineering, design, and ethical domains."
         },
         {
             "title": "Report 8 - Final Report",
             "filename": "FinalReport_General_AI.pdf",
-            "description": "Complete summary covering system conception, design, testing, deployment, ethical implications, and future directions"
+            "description": "Complete summary covering system conception, design, testing, deployment, ethical implications, and future directions."
         }
     ]
 
