@@ -13,7 +13,7 @@ def create_app():
 
     # Sample PDF information - replace with your actual PDF files
     pdf_files = [
-        {  
+        {
             "title": "Report 1 - Project Idea Report",
             "filename": "FKR-ProjectIdea.pdf",
             "description": "Introduction and project overview"
@@ -47,6 +47,11 @@ def create_app():
             "title": "Report 7 - Multidisciplinary Delivery Assessment",
             "filename": "MultidisciplinaryDeliveryAssessment.pdf",
             "description": "Evaluation of interdisciplinary collaboration and integration across engineering, design, and ethical domains"
+        },
+        {
+            "title": "Report 8 - Final Report",
+            "filename": "FinalReport_General_AI.pdf",
+            "description": "Complete summary covering system conception, design, testing, deployment, ethical implications, and future directions"
         }
     ]
 
