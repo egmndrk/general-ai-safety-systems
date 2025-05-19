@@ -5,22 +5,30 @@ document.addEventListener('DOMContentLoaded', function() {
     const darkModeToggle = document.getElementById('darkModeToggle');
     
     if (darkModeToggle) {
-        // Check for saved user preference
-        const darkMode = localStorage.getItem('darkMode') === 'true';
+        // Check for saved user preference or system preference
+        let darkMode = localStorage.getItem('darkMode');
         
-        // Apply dark mode if previously selected
+        // If no preference is set, check system preference
+        if (darkMode === null) {
+            darkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            localStorage.setItem('darkMode', darkMode);
+        } else {
+            darkMode = darkMode === 'true';
+        }
+        
+        // Apply dark mode if needed
         if (darkMode) {
-            document.body.classList.add('dark-mode');
+            document.documentElement.classList.add('dark');
             darkModeToggle.checked = true;
         }
         
         // Add event listener for toggle
         darkModeToggle.addEventListener('change', function() {
             if (this.checked) {
-                document.body.classList.add('dark-mode');
+                document.documentElement.classList.add('dark');
                 localStorage.setItem('darkMode', 'true');
             } else {
-                document.body.classList.remove('dark-mode');
+                document.documentElement.classList.remove('dark');
                 localStorage.setItem('darkMode', 'false');
             }
         });
@@ -61,8 +69,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 if (title.includes(searchTerm) || description.includes(searchTerm)) {
                     card.style.display = 'block';
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, 50);
                 } else {
-                    card.style.display = 'none';
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        card.style.display = 'none';
+                    }, 300);
                 }
             });
         });
@@ -74,17 +90,26 @@ document.addEventListener('DOMContentLoaded', function() {
         
         elements.forEach(element => {
             const position = element.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
             
-            // Check if element is in viewport
-            if (position.top < window.innerHeight && position.bottom >= 0) {
-                element.classList.add('animate-fadeIn');
+            // Check if element is in viewport (with offset for smoother appearance)
+            if (position.top < windowHeight - 100) {
+                element.classList.add('visible');
             }
         });
     };
     
-    // Run on scroll
-    window.addEventListener('scroll', animateOnScroll);
+    // Run on scroll with throttling for better performance
+    let scrollTimeout;
+    window.addEventListener('scroll', function() {
+        if (!scrollTimeout) {
+            scrollTimeout = setTimeout(function() {
+                scrollTimeout = null;
+                animateOnScroll();
+            }, 100);
+        }
+    });
     
-    // Run once on page load
-    animateOnScroll();
+    // Run once on page load after a slight delay to allow page rendering
+    setTimeout(animateOnScroll, 100);
 }); 
